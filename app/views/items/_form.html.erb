@@ -1,0 +1,19 @@
+<%=form_with model: @item do |form|%>
+
+    <% if @item.errors.any? %>
+        <% @item.errors.each do |error| %>
+             <%= error.full_message %>
+        <% end %>
+    <% end %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :expected_cost %>
+    <%= form.number_field :expected_cost, step: 0.01 %>
+
+    <%= form.label :is_done %>
+    <%= form.check_box :is_done %>
+
+    <%= form.submit %> 
+<% end %>

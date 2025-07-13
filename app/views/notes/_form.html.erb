@@ -1,0 +1,15 @@
+
+<%= form_with model: @note do |form| %>
+     
+    <% if @note.errors.any? %>
+        <% @note.errors.each do |error| %>
+             <%= error.full_message %>
+        <% end %>
+    <% end %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+    <%= form.submit submit_text %>
+<% end %>

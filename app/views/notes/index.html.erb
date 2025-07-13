@@ -1,0 +1,32 @@
+<h1>My notes </h1>
+
+<%= link_to 'Create note', new_note_path %>
+<ul>
+    <% @notes.each do |note|%>
+        <li> <%= p "#{note.name}: #{note.body}"  %>  </li>
+    <% end %>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Body</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @notes.each do |note|%>
+        <tr> 
+            <td><%= note.id %></td>
+            <td><%= link_to "#{note.name}", note  %></td>
+            <td><%= note.body %></td>
+            <td> 
+                <td><%= link_to 'Edit', edit_note_path(note) %></td>
+                <td><%= button_to 'Delete', note, method: :delete  %></td>
+            </td>
+        </tr>
+        <% end  %>
+    </tbody>
+</table>
