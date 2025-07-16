@@ -1,16 +1,12 @@
-<h1>My notes </h1>
+<div class ="flex justify-between items-center">
+<h1 class ="text-2xl font-semibold">My notes </h1>
+<%= link_to 'Create note', new_note_path, class: 'px-4 py-2 bg-indigo-600 text-white rounded-md' %>
+</div>
 
-<%= link_to 'Create note', new_note_path %>
-<ul>
-    <% @notes.each do |note|%>
-        <li> <%= p "#{note.name}: #{note.body}"  %>  </li>
-    <% end %>
-</ul>
-
-<table>
+<table class="mt-6 w-full">
     <thead>
-        <tr>
-            <th>ID</th>
+        <tr class="bg-gray-100 text-left">
+            <th class="py-3 px-3">ID</th>
             <th>Name</th>
             <th>Body</th>
             <th>Action</th>
@@ -18,13 +14,15 @@
     </thead>
     <tbody>
         <% @notes.each do |note|%>
-        <tr> 
-            <td><%= note.id %></td>
-            <td><%= link_to "#{note.name}", note  %></td>
+        <tr class="border-t border-gray-100"> 
+            <td class="py-2 px-3"><%= note.id %></td>
+            <td><%= link_to note.name, note  %></td>
             <td><%= note.body %></td>
             <td> 
-                <td><%= link_to 'Edit', edit_note_path(note) %></td>
-                <td><%= button_to 'Delete', note, method: :delete  %></td>
+                <div class="flex">
+                <%= link_to 'Edit', edit_note_path(note), class:'px-3 py-1.5 rounded-md border border-grey-400 rounded-md' %>
+                <%= button_to 'Delete', note, method: :delete, class: 'ml-2 px-3 py-1.5 bg-rose-100 text-rose-400 rounded-md'  %>
+                </div>
             </td>
         </tr>
         <% end  %>
