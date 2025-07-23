@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
   def update
   
    if @item.update(item_params)
-    redirect_to @item
+    redirect_to items_url
    else
     render 'edit', status: :unprocessable_entity
    end

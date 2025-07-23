@@ -1,32 +1,31 @@
-<h1>Items </h1>
-<%= link_to 'Add new item', new_item_path %>
-<ul>
-    <% @items.each do |item|%>
-        <li> <%= item.name %>  </li>
-    <% end %>
-</ul>
+<div class ="flex justify-between items-center">
+<h1 class ="text-2xl font-semibold">Items</h1>
+<%= link_to 'Create item', new_item_path, class: 'px-4 py-2 bg-indigo-600 text-white rounded-md' %>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Expected cost</th>
-            <th>Done</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @items.each do |item|%>
-        <tr> 
-            <td><%= item.id %></td>
-            <td><%= link_to item.name, item %></td>
-            <td><%= item.expected_cost %></td>
-            <td><%= item.is_done %></td>
-            <td>
-                <td> <%= link_to 'Edit ', edit_item_path(item) %> </td>
-                <td> <%= button_to 'Delete', item, method: :delete %> </td>
-        </tr>
-        <% end  %>
-    </tbody>
-</table>
+<section class='mt-6 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 gap-y-6 gap-x-6'>
+    <% @items.each do |item| %>
+        <% if item.is_done? %>
+            <div class='shadow-md p-4 bg-emerald-50 transition duration-300 hover:shadow-xl'>
+                <div>
+                    <h2 class='text-lg font-medium'><%= item.name %></h2>
+                    <p> <%= item.expected_cost %> </p>
+                </div>
+                <div>
+                    <%= button_to 'Delete', item, method: :delete , class:'px-4 py-2 text-gray-600 border border-gray-300 rounded-md' %>
+                </div>
+            </div>
+        <% else %>
+        <div class='flex justify-between items-center shadow-md p-4 bg-gray-50'>
+            <div>
+                <h2 class='text-lg font-medium'><%= item.name %></h2>
+                    <p> <%= item.expected_cost %> </p>
+                </div>
+                <div>
+                    <%= button_to 'Done!', item, method: :patch, params: {item: { is_done: true} } , class:'px-4 py-2 text-gray-600 border border-gray-300 rounded-md' %>
+                </div>
+        </div>
+        <%end%>
+    <%end%>
+</section>
+

@@ -1,19 +1,24 @@
-<%=form_with model: @item do |form|%>
+<%=form_with model: @item, class:'grid grid-cols-1 gap-y-6' do |form| %>
 
     <% if @item.errors.any? %>
         <% @item.errors.each do |error| %>
              <%= error.full_message %>
         <% end %>
     <% end %>
+    <div>
+        <%= form.label :name, class:'text-grey-700 text-sm font-medium' %>
+        <%= form.text_field :name, class:'mt-1 w-full border-0 ring-1 px-3 py-1.5 ring-gray-300 rounded-md ' %>
+    </div>
+    <div>
+        <%= form.label :expected_cost, class:'text-grey-700 text-sm font-medium' %>
+        <%= form.number_field :expected_cost, step: 0.01, class:'mt-1 w-full border-0 ring-1 px-3 py-1.5 ring-gray-300 rounded-md ' %>
+    </div>
+    <div>
+        <%= form.label :is_done, class:'text-grey-700 text-sm font-medium' %>
+        <%= form.check_box :is_done, class:'ml-3 border-0 ring-1 ring-gray-300 rounded-md' %>
+    </div>
 
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-
-    <%= form.label :expected_cost %>
-    <%= form.number_field :expected_cost, step: 0.01 %>
-
-    <%= form.label :is_done %>
-    <%= form.check_box :is_done %>
-
-    <%= form.submit %> 
+    <div>
+        <%= form.submit class:'px-4 py-2 bg-indigo-600 text-white rounded-md' %> 
+    </div>
 <% end %>
