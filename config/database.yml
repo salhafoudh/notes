@@ -25,4 +25,4 @@ production:
   encoding: unicode
   database: notes_production
   username: notes
-  production: <%= ENV ["NOTES_DATABASE_PASSWORD"] %>
+  production: <%= ENV["NOTES_DATABASE_PASSWORD"] %>
