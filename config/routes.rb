@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   delete 'items/:id', to: 'items#destroy'
   get 'items/:id/edit', to: 'items#edit', as: :edit_item
 
-  root 'notes#index'
+  root 'pages#home'
 end
